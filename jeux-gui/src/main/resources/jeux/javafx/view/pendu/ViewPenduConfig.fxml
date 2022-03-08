@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" fillWidth="false" prefHeight="291.0" prefWidth="264.0" spacing="25.0" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeux.javafx.view.pendu.ControllerPenduConfig">
+   <children>
+      <Label text="Jeu du Pendu" textFill="#190be8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="90.0">
+         <children>
+            <GridPane alignment="TOP_RIGHT" prefHeight="90.0" prefWidth="191.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="122.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="40.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="53.0" minHeight="3.0" prefHeight="40.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="50.0" prefWidth="129.0" text="Afficher la première et la dernière lettre :" wrapText="true" />
+                  <CheckBox fx:id="checkBoxModeFacile" mnemonicParsing="false" GridPane.columnIndex="1" />
+                  <Spinner fx:id="spinnerNbErreursMaxi" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Nombre maxi d'erreurs :" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" prefHeight="19.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#doValider" text="Valider" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#doAnnuler" text="Annuler" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

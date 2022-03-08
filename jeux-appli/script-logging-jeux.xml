@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     11/2021
+
+     logging-jeux    
+     Tests pour le TP sur Java Logging avec l'application de Jeux
+                   
+     E. Amblard                                                                
+     ====================================================================== -->
+<project name="logging-jeux" default="" >
+    <description>
+            Tests pour le TP sur Java Logging avec l'application de Jeux
+    </description>
+
+     
+	<!-- - - - - - - - - - - - - - - - - - 
+	     Propriétés générales                      
+	     - - - - - - - - - - - - - - - - - -->
+	
+    <property name="jdbc.driver" value="org.postgresql.Driver" />
+    <property name="jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+    <property name="jdbc.user" value="postgres" />
+    <property name="jdbc.password" value="postgres" />
+
+	<path id="path.driver.jdbc">
+		<fileset dir="../~UtilServeurs/lib" >
+			<include name="drivers/postgresql-*.jar"/>
+		</fileset>
+	</path>
+	
+
+    <!-- ================================= 
+          target: config-normal              
+         ================================= -->
+	<target name="config-normal" >
+		
+		<move 
+			file="../jeux-gui/target/classes/jeux/javafx/model/standard/ModelNombre.class.bak"
+			tofile="../jeux-gui/target/classes/jeux/javafx/model/standard/ModelNombre.class"
+			failonerror="false"			
+		/>
+		
+		<sql driver="${jdbc.driver}" url="${jdbc.url}" 
+			userid="${jdbc.user}" password="${jdbc.password}"
+			classpathref="path.driver.jdbc" 
+			onerror="continue"	 
+		>
+			ALTER TABLE jeux.pendu
+			RENAME COLUMN NbErreursMax TO NbErreursMaxi;
+		</sql>
+		
+
+	</target>
+	
+
+    <!-- ================================= 
+          target: config-bug-sql              
+         ================================= -->
+	<target name="config-bug-sql" >
+
+		<sql driver="${jdbc.driver}" url="${jdbc.url}" 
+			userid="${jdbc.user}" password="${jdbc.password}"
+			classpathref="path.driver.jdbc" onerror="continue"	 
+		>
+			ALTER TABLE jeux.pendu
+			RENAME COLUMN NbErreursMaxi TO NbErreursMax;
+		</sql>
+		
+	</target>
+	
+
+    <!-- ================================= 
+          target: config-bug-model              
+         ================================= -->
+	<target name="config-bug-model" >
+
+		<move 
+			file="../jeux-gui/target/classes/jeux/javafx/model/standard/ModelNombre.class" 
+			tofile="../jeux-gui/target/classes/jeux/javafx/model/standard/ModelNombre.class.bak"
+		/>
+		
+	</target>
+
+</project>
